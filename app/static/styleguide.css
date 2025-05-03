@@ -122,10 +122,11 @@ label {
     margin-left: 8px;
 }
 .calendar-table {
-    table-layout: fixed;
-    width: 240px;
-    border-collapse: collapse;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 8px;
     text-align: center;
+    table-layout: fixed;
 }
 .calendar-table th {
     font-family: var(--medium-font-family);
@@ -135,12 +136,9 @@ label {
     padding-bottom: 8px;
 }
 .calendar-table td {
-    width: 32px;
-    height: 32px;
+    aspect-ratio: 1/1;
     min-width: 32px;
-    min-height: 32px;
-    max-width: 32px;
-    max-height: 32px;
+    max-width: 48px;
     font-family: var(--medium-font-family);
     font-weight: var(--medium-font-weight);
     font-size: var(--medium-font-size);
@@ -153,15 +151,14 @@ label {
     box-sizing: border-box;
     transition: background 0.15s, color 0.15s;
     overflow: hidden;
+    background: none;
 }
 .calendar-table .selected {
     background: var(--variable-collection-secondary500);
     color: var(--variable-collection-primary100);
     font-weight: var(--large-bold-font-weight);
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
+    line-height: normal;
     text-align: center;
     vertical-align: middle;
     overflow: hidden;
