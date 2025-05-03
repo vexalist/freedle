@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a date | Freedle</title>
+    <link rel="stylesheet" href="/static/styleguide.css">
+    <style>
+        .calendar-table td.disabled {
+            color: var(--variable-collection-primary500);
+            background: none !important;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find a date</h1>
+        <label for="event-title">What's the event?</label>
+        <input id="event-title" class="input-box" type="text" maxlength="80" placeholder="Poker night" value="Poker night" disabled>
+        <div class="calendar-section">
+            <span class="calendar-label">Pick up to 10 dates as options</span>
+            <div class="calendar">
+                <div class="calendar-header">
+                    <span id="calendar-month-label">April 2025</span>
+                    <div class="calendar-arrows">
+                        <button class="calendar-nav" id="prev-month">&lt;</button>
+                        <button class="calendar-nav" id="next-month">&gt;</button>
+                    </div>
+                </div>
+                <table class="calendar-table">
+                    <thead>
+                        <tr>
+                            <th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th><th>Su</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body">
+                        <!-- Calendar days will be rendered here by JS -->
+                    </tbody>
+                </table>
+                <div id="calendar-message" style="color: var(--variable-collection-terciary500); font-size: var(--medium-font-size); margin-top: 8px; min-height: 24px;"></div>
+            </div>
+        </div>
+        <button class="done-btn" id="done-btn" disabled>Done</button>
+        <div class="logo">freedle</div>
+    </div>
+    <script>
+        // --- Calendar Logic ---
+        const maxSelections = 10;
+        const selectedDates = new Set();
+        const messageDiv = document.getElementById('calendar-message');
+        const doneBtn = document.getElementById('done-btn');
+        const monthLabel = document.getElementById('calendar-month-label');
+        const calendarBody = document.getElementById('calendar-body');
+        const prevBtn = document.getElementById('prev-month');
+        const nextBtn = document.getElementById('next-month');
+
+        // Date boundaries
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const startYear = today.getFullYear();
+        const startMonth = today.getMonth();
+        const endDate = new Date(today);
+        endDate.setMonth(endDate.getMonth() + 6);
+        endDate.setDate(0); // Last day of the 6th month
+        const endYear = endDate.getFullYear();
+        const endMonth = endDate.getMonth();
+
+        // Build months array from today to 6 months ahead
+        const months = [];
+        let y = startYear, m = startMonth;
+        while (y < endYear || (y === endYear && m <= endMonth)) {
+            months.push({
+                name: new Date(y, m).toLocaleString('default', { month: 'long' }),
+                year: y,
+                month: m
+            });
+            m++;
+            if (m > 11) { m = 0; y++; }
+        }
+        let currentMonthIdx = 0; // Start at current month
+
+        function pad(n) { return n < 10 ? '0' + n : n; }
+
+        function renderCalendar() {
+            const { name, year, month } = months[currentMonthIdx];
+            monthLabel.textContent = `${name} ${year}`;
+            // Enable/disable arrows
+            prevBtn.disabled = currentMonthIdx === 0;
+            nextBtn.disabled = currentMonthIdx === months.length - 1;
+
+            // First day of month (0=Sun, 1=Mon...)
+            const firstDay = new Date(year, month, 1);
+            let startDay = firstDay.getDay();
+            startDay = startDay === 0 ? 6 : startDay - 1; // Make Monday=0
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            let html = '';
+            let day = 1;
+            for (let row = 0; row < 6; row++) {
+                html += '<tr>';
+                for (let col = 0; col < 7; col++) {
+                    if (row === 0 && col < startDay) {
+                        html += '<td></td>';
+                    } else if (day > daysInMonth) {
+                        html += '<td></td>';
+                    } else {
+                        const dateObj = new Date(year, month, day);
+                        dateObj.setHours(0,0,0,0);
+                        const dateStr = `${year}-${pad(month + 1)}-${pad(day)}`;
+                        let cellClass = '';
+                        let disabled = false;
+                        if (dateObj < today) {
+                            cellClass = 'disabled';
+                            disabled = true;
+                        }
+                        if (selectedDates.has(dateStr)) cellClass += ' selected';
+                        html += `<td data-date="${dateStr}" class="${cellClass.trim()}"${disabled ? ' tabindex="-1"' : ''}>${day}</td>`;
+                        day++;
+                    }
+                }
+                html += '</tr>';
+                if (day > daysInMonth) break;
+            }
+            calendarBody.innerHTML = html;
+
+            // Add click listeners
+            document.querySelectorAll('.calendar-table td[data-date]').forEach(cell => {
+                if (cell.classList.contains('disabled')) return;
+                cell.addEventListener('click', function() {
+                    const date = this.getAttribute('data-date');
+                    if (this.classList.contains('selected')) {
+                        this.classList.remove('selected');
+                        selectedDates.delete(date);
+                        messageDiv.textContent = '';
+                    } else {
+                        if (selectedDates.size >= maxSelections) {
+                            messageDiv.textContent = `You can select up to ${maxSelections} dates.`;
+                            return;
+                        }
+                        this.classList.add('selected');
+                        selectedDates.add(date);
+                        messageDiv.textContent = '';
+                    }
+                    doneBtn.disabled = selectedDates.size === 0;
+                });
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentMonthIdx > 0) {
+                currentMonthIdx--;
+                renderCalendar();
+            }
+        });
+        nextBtn.addEventListener('click', () => {
+            if (currentMonthIdx < months.length - 1) {
+                currentMonthIdx++;
+                renderCalendar();
+            }
+        });
+
+        // Initial render
+        renderCalendar();
+    </script>
+</body>
+</html> 

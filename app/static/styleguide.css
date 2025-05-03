@@ -1,0 +1,221 @@
+:root {
+  --medium-font-family: "DM Sans", Helvetica;
+  --medium-font-weight: 300;
+  --medium-font-size: 16px;
+  --medium-letter-spacing: 0px;
+  --medium-line-height: normal;
+  --medium-font-style: italic;
+  --large-font-family: "DM Sans", Helvetica;
+  --large-font-weight: 400;
+  --large-font-size: 20px;
+  --large-letter-spacing: 0px;
+  --large-line-height: normal;
+  --large-font-style: normal;
+  --large-bold-font-family: "DM Sans", Helvetica;
+  --large-bold-font-weight: 700;
+  --large-bold-font-size: 20px;
+  --large-bold-letter-spacing: 0px;
+  --large-bold-line-height: normal;
+  --large-bold-font-style: normal;
+  --page-title-font-family: "Bricolage Grotesque", Helvetica;
+  --page-title-font-weight: 800;
+  --page-title-font-size: 44px;
+  --page-title-letter-spacing: 0px;
+  --page-title-line-height: normal;
+  --page-title-font-style: normal;
+  --variable-collection-primary100: rgba(34, 34, 34, 1);
+  --variable-collection-primary90: rgba(50, 50, 50, 1);
+  --variable-collection-secondary500: rgba(108, 255, 154, 1);
+  --variable-collection-terciary500: rgba(255, 218, 123, 1);
+  --variable-collection-primary500: rgba(141, 141, 141, 1);
+}
+body {
+    background: var(--variable-collection-primary100);
+    color: #fff;
+    font-family: var(--medium-font-family);
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 32px 16px 0 16px;
+}
+h1 {
+    font-family: var(--page-title-font-family);
+    font-weight: var(--page-title-font-weight);
+    font-size: var(--page-title-font-size);
+    letter-spacing: var(--page-title-letter-spacing);
+    line-height: var(--page-title-line-height);
+    font-style: var(--page-title-font-style);
+    margin-bottom: 32px;
+}
+label {
+    display: block;
+    font-family: var(--large-font-family);
+    font-weight: var(--large-font-weight);
+    font-size: var(--large-font-size);
+    letter-spacing: var(--large-letter-spacing);
+    line-height: var(--large-line-height);
+    font-style: var(--large-font-style);
+    margin-bottom: 8px;
+    margin-top: 32px;
+}
+.input-box {
+    background: var(--variable-collection-primary90);
+    border-radius: 16px;
+    padding: 20px 20px;
+    font-family: var(--large-bold-font-family);
+    font-weight: var(--large-bold-font-weight);
+    font-size: var(--large-bold-font-size);
+    letter-spacing: var(--large-bold-letter-spacing);
+    line-height: var(--large-bold-line-height);
+    font-style: var(--large-bold-font-style);
+    color: #fff;
+    border: none;
+    width: 100%;
+    margin-bottom: 32px;
+}
+.calendar-section {
+    margin-top: 32px;
+}
+.calendar-label {
+    font-family: var(--large-font-family);
+    font-weight: var(--large-font-weight);
+    font-size: var(--large-font-size);
+    letter-spacing: var(--large-letter-spacing);
+    line-height: var(--large-line-height);
+    font-style: var(--large-font-style);
+    margin-bottom: 16px;
+    display: block;
+}
+.calendar {
+    background: var(--variable-collection-primary90);
+    border-radius: 16px;
+    padding: 24px 16px 32px 16px;
+    margin-bottom: 32px;
+}
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--large-bold-font-family);
+    font-weight: var(--large-bold-font-weight);
+    font-size: var(--large-bold-font-size);
+    letter-spacing: var(--large-bold-letter-spacing);
+    line-height: var(--large-bold-line-height);
+    font-style: var(--large-bold-font-style);
+    margin-bottom: 16px;
+}
+.calendar-nav {
+    background: var(--variable-collection-primary100);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--large-bold-font-size);
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    margin-left: 8px;
+}
+.calendar-table {
+    table-layout: fixed;
+    width: 240px;
+    border-collapse: collapse;
+    text-align: center;
+}
+.calendar-table th {
+    font-family: var(--medium-font-family);
+    font-weight: var(--large-bold-font-weight);
+    font-size: var(--medium-font-size);
+    color: #fff;
+    padding-bottom: 8px;
+}
+.calendar-table td {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    max-width: 32px;
+    max-height: 32px;
+    font-family: var(--medium-font-family);
+    font-weight: var(--medium-font-weight);
+    font-size: var(--medium-font-size);
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background 0.15s, color 0.15s;
+    overflow: hidden;
+}
+.calendar-table .selected {
+    background: var(--variable-collection-secondary500);
+    color: var(--variable-collection-primary100);
+    font-weight: var(--large-bold-font-weight);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+}
+.done-btn {
+    width: 100%;
+    background: var(--variable-collection-secondary500);
+    color: var(--variable-collection-primary100);
+    font-family: var(--large-bold-font-family);
+    font-weight: var(--large-bold-font-weight);
+    font-size: var(--large-bold-font-size);
+    border: none;
+    border-radius: 16px;
+    padding: 18px 0;
+    margin-top: 24px;
+    margin-bottom: 32px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.done-btn:hover {
+    background: #4be87a;
+}
+.logo {
+    text-align: center;
+    font-family: var(--page-title-font-family);
+    font-weight: var(--page-title-font-weight);
+    font-size: 2.5rem;
+    color: var(--variable-collection-terciary500);
+    margin-top: 32px;
+    letter-spacing: 1px;
+}
+@media (max-width: 600px) {
+    .container {
+        padding: 24px 4px 0 4px;
+    }
+    h1 {
+        font-size: 2.2rem;
+    }
+    .input-box {
+        font-size: 1.3rem;
+    }
+    .calendar-header {
+        font-size: 1.2rem;
+    }
+    .done-btn {
+        font-size: 1.3rem;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+}
+.calendar-arrows {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+} 
