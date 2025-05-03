@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll Created | Freedle</title>
+    <link rel="stylesheet" href="/static/styleguide.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Poll Created!</h1>
+        <p><strong>Event:</strong> {{ event_title }}</p>
+        <p><strong>Selected Dates:</strong></p>
+        <ul>
+            {% for date in selected_dates %}
+                <li>{{ date }}</li>
+            {% endfor %}
+        </ul>
+        <a href="/" class="done-btn" style="text-decoration:none;display:inline-block;text-align:center;">Back to Home</a>
+    </div>
+</body>
+</html> 

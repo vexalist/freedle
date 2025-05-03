@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
 
@@ -16,6 +17,12 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev')
 
 # Initialize database
 db = SQLAlchemy(app)
+
+# Import models
+from app import models
+
+# Set up migrations
+migrate = Migrate(app, db)
 
 # Import routes after app initialization to avoid circular imports
 from app import routes 
