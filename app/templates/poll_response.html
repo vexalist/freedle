@@ -22,7 +22,9 @@
                         <thead>
                             <tr>
                                 <th class="results-th">Date</th>
+                                {% if participants|length > 0 %}
                                 <th class="results-th">Tally</th>
+                                {% endif %}
                                 {% for participant in participants %}
                                 <th class="participant-header">{{ participant }}</th>
                                 {% endfor %}
@@ -37,7 +39,9 @@
                                         <label for="date-{{ loop.index }}" style="margin: 0; padding: 0;">{{ format_date_option(date_options[date_idx].date_option) }}</label>
                                     </div>
                                 </td>
+                                {% if participants|length > 0 %}
                                 <td class="results-tally {% if grid[date_idx]|sum == participants|length and participants|length > 0 %}full{% else %}partial{% endif %}">{{ grid[date_idx]|sum }}/{{ participants|length }}</td>
+                                {% endif %}
                                 {% for part_idx in range(participants|length) %}
                                 <td class="participant-cell">
                                     {% if grid[date_idx][part_idx] %}

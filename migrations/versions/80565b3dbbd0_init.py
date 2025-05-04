@@ -1,8 +1,8 @@
-"""Initial migration: create poll, poll_date, response, response_selection tables
+"""init
 
-Revision ID: 522ce1839fd7
+Revision ID: 80565b3dbbd0
 Revises: 
-Create Date: 2025-05-03 16:26:11.193462
+Create Date: 2025-05-04 14:36:34.382736
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '522ce1839fd7'
+revision = '80565b3dbbd0'
 down_revision = None
 branch_labels = None
 depends_on = None
