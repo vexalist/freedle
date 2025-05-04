@@ -14,8 +14,7 @@
             min-width: var(--participant-col-width);
             max-width: var(--participant-col-width);
             padding: 0 8px;
-            height: 60px;
-            vertical-align: bottom;
+            vertical-align: top;
         }
         .participant-cell {
             width: var(--participant-col-width);
@@ -27,20 +26,20 @@
 </head>
 <body>
     <div class="container">
-        <h1 style="font-size: 3rem; font-family: var(--page-title-font-family); font-weight: var(--page-title-font-weight);">{{ poll.event_title }}</h1>
-        <div style="margin: 40px 0 24px 0;">
-            <div style="font-size: 1.2rem; margin-bottom: 12px;">Share it with your mates</div>
-            <div style="display: flex; align-items: flex-start; gap: 12px;">
-                <input id="poll-url" class="input-box" type="text" value="{{ poll_url }}" readonly style="flex: 1; user-select: all; font-size: 1.2rem; background: var(--variable-collection-primary90); border: none; color: #fff;">
-                <button id="copy-btn" type="button" class="copy-btn" style="background: #6cff9a; color: #222; border: none; cursor: pointer;">copy</button>
+        <h1 class="page-title">{{ poll.event_title }}</h1>
+        <div class="margin-40-0-24-0">
+            <div class="font-size-1-2rem margin-bottom-12">Share it with your mates</div>
+            <div class="share-row">
+                <input id="poll-url" class="input-box poll-url" type="text" value="{{ poll_url }}" readonly>
+                <button id="copy-btn" type="button" class="copy-btn">copy</button>
             </div>
         </div>
         <div style="overflow-x: auto;">
-            <table style="width: 100%; border-collapse: separate; border-spacing: 0 8px; margin-bottom: 32px;">
+            <table class="results-table">
                 <thead>
                     <tr>
-                        <th style="text-align: left; font-size: 1.1rem; font-weight: 700; color: #fff;"></th>
-                        <th style="text-align: left; font-size: 1.1rem; font-weight: 700; color: #fff;"></th>
+                        <th class="results-th"></th>
+                        <th class="results-th"></th>
                         {% for participant in participants %}
                         <th class="participant-header"></th>
                         {% endfor %}
@@ -49,14 +48,14 @@
                 <tbody>
                     {% for date_idx in range(date_options|length) %}
                     <tr>
-                        <td style="font-size: 1.1rem; font-weight: 600; color: #ffd97b; padding-right: 12px;">{{ date_labels[date_idx] }}</td>
-                        <td style="font-size: 1.1rem; font-weight: 600; color: {% if tallies[date_idx] == participants|length and participants|length > 0 %}#6cff9a{% else %}#fff{% endif %}; padding-right: 12px;">{{ tallies[date_idx] }}/{{ participants|length }}</td>
+                        <td class="results-td">{{ date_labels[date_idx] }}</td>
+                        <td class="results-tally {% if tallies[date_idx] == participants|length and participants|length > 0 %}full{% else %}partial{% endif %}">{{ tallies[date_idx] }}/{{ participants|length }}</td>
                         {% for part_idx in range(participants|length) %}
                         <td class="participant-cell">
                             {% if grid[date_idx][part_idx] %}
-                                <img src="/static/icons/available.svg" alt="Available" width="32" height="32" style="vertical-align: middle;" />
+                                <img src="/static/icons/available.svg" alt="Available" width="32" height="32" class="icon-middle" />
                             {% else %}
-                                <img src="/static/icons/not-available.svg" alt="Not Available" width="32" height="32" style="vertical-align: middle;" />
+                                <img src="/static/icons/not-available.svg" alt="Not Available" width="32" height="32" class="icon-middle" />
                             {% endif %}
                         </td>
                         {% endfor %}
@@ -65,14 +64,14 @@
                 </tbody>
             </table>
         </div>
-        <div style="display: flex; gap: 12px; justify-content: flex-end; align-items: flex-end; min-height: 60px; margin-bottom: 32px;">
+        <div class="margin-bottom-32" style="display: flex; gap: 12px; justify-content: flex-end; align-items: flex-end; min-height: 60px;">
             {% for participant in participants %}
             <div class="participant-header">
-                <div style="writing-mode: vertical-rl; transform: rotate(180deg); font-size: 1.1rem; font-weight: 700; color: #fff; letter-spacing: 1px;">{{ participant }}</div>
+                <div class="participant-name-vertical">{{ participant }}</div>
             </div>
             {% endfor %}
         </div>
-        <a href="/create" class="logo" style="text-decoration: none; color: inherit;">freedle</a>
+        <a href="/create" class="logo logo-link">freedle</a>
     </div>
     <script>
         document.getElementById('copy-btn').onclick = function() {

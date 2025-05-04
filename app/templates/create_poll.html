@@ -28,10 +28,10 @@
                         <span id="calendar-month-label">April 2025</span>
                         <div class="calendar-arrows">
                             <button class="calendar-nav" id="prev-month" type="button" aria-label="Previous month">
-                                <img src="/static/icons/previous.svg" alt="Previous" width="40" height="40" style="vertical-align: middle;" />
+                                <img src="/static/icons/previous.svg" alt="Previous" width="40" height="40" class="icon-middle" />
                             </button>
                             <button class="calendar-nav" id="next-month" type="button" aria-label="Next month">
-                                <img src="/static/icons/next.svg" alt="Next" width="40" height="40" style="vertical-align: middle;" />
+                                <img src="/static/icons/next.svg" alt="Next" width="40" height="40" class="icon-middle" />
                             </button>
                         </div>
                     </div>
@@ -45,12 +45,12 @@
                             <!-- Calendar days will be rendered here by JS -->
                         </tbody>
                     </table>
-                    <div id="calendar-message" style="color: var(--variable-collection-terciary500); font-size: var(--medium-font-size); margin-top: 8px; min-height: 24px;"></div>
+                    <div id="calendar-message"></div>
                 </div>
             </div>
             <button class="done-btn" id="done-btn" type="submit" disabled>Done</button>
         </form>
-        <a href="/create" class="logo" style="text-decoration: none; color: inherit;">freedle</a>
+        <a href="/create" class="logo logo-link">freedle</a>
     </div>
     <script>
         // --- Calendar Logic ---

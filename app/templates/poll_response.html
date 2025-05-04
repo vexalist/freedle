@@ -8,15 +8,15 @@
 </head>
 <body>
     <div class="container">
-        <h1 style="font-size: 3rem; font-family: var(--page-title-font-family); font-weight: var(--page-title-font-weight);">{{ poll.event_title }}</h1>
-        <p style="font-size: 1.5rem; margin-bottom: 32px;">When could you be available?</p>
+        <h1 class="page-title">{{ poll.event_title }}</h1>
+        <p class="font-size-1-5rem margin-bottom-32">When could you be available?</p>
         {% if error %}
-            <div style="color: #ff6b6b; margin-bottom: 16px;">{{ error }}</div>
+            <div class="error-message">{{ error }}</div>
         {% endif %}
         <form method="POST">
             <label for="name">Your name</label>
             <input id="name" name="name" class="input-box" type="text" maxlength="40" placeholder="Enter your name" required>
-            <div style="margin-top: 32px;">
+            <div class="margin-top-32">
                 {% for date in date_options %}
                 <div class="date-option-row">
                     <input type="checkbox" id="date-{{ loop.index }}" name="dates" value="{{ date.date_option }}">
@@ -24,16 +24,16 @@
                 </div>
                 {% endfor %}
             </div>
-            <button class="done-btn" type="submit" style="margin-top: 32px;">Save</button>
+            <button class="done-btn margin-top-32" type="submit">Save</button>
         </form>
-        <div style="margin: 40px 0 24px 0;">
-            <div style="font-size: 1.2rem; margin-bottom: 12px;">Share it with your mates</div>
-            <div style="display: flex; align-items: flex-start; gap: 12px;">
-                <input id="poll-url" class="input-box" type="text" value="{{ poll_url }}" readonly style="flex: 1; user-select: all; font-size: 1.2rem; background: var(--variable-collection-primary90); border: none; color: #fff;">
-                <button id="copy-btn" type="button" class="copy-btn" style="background: #6cff9a; color: #222; border: none; cursor: pointer;">copy</button>
+        <div class="margin-40-0-24-0">
+            <div class="font-size-1-2rem margin-bottom-12">Share it with your mates</div>
+            <div class="share-row">
+                <input id="poll-url" class="input-box poll-url" type="text" value="{{ poll_url }}" readonly>
+                <button id="copy-btn" type="button" class="copy-btn">copy</button>
             </div>
         </div>
-        <a href="/create" class="logo" style="text-decoration: none; color: inherit;">freedle</a>
+        <a href="/create" class="logo logo-link">freedle</a>
     </div>
     <script>
         document.getElementById('copy-btn').onclick = function() {
