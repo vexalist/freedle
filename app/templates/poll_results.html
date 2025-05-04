@@ -30,7 +30,7 @@
         <h1 style="font-size: 3rem; font-family: var(--page-title-font-family); font-weight: var(--page-title-font-weight);">{{ poll.event_title }}</h1>
         <div style="margin: 40px 0 24px 0;">
             <div style="font-size: 1.2rem; margin-bottom: 12px;">Share it with your mates</div>
-            <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="display: flex; align-items: flex-start; gap: 12px;">
                 <input id="poll-url" class="input-box" type="text" value="{{ poll_url }}" readonly style="flex: 1; user-select: all; font-size: 1.2rem; background: var(--variable-collection-primary90); border: none; color: #fff;">
                 <button id="copy-btn" type="button" class="copy-btn" style="background: #6cff9a; color: #222; border: none; cursor: pointer;">copy</button>
             </div>
@@ -52,9 +52,9 @@
                         {% for part_idx in range(participants|length) %}
                         <td class="participant-cell">
                             {% if grid[date_idx][part_idx] %}
-                                <span style="color: #ffd97b; font-size: 2rem;">&#10003;</span>
+                                <img src="/static/icons/available.svg" alt="Available" width="32" height="32" style="vertical-align: middle;" />
                             {% else %}
-                                <span style="color: #8d8d8d; font-size: 2rem;">&#10007;</span>
+                                <img src="/static/icons/not-available.svg" alt="Not Available" width="32" height="32" style="vertical-align: middle;" />
                             {% endif %}
                         </td>
                         {% endfor %}

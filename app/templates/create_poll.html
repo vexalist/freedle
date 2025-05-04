@@ -27,8 +27,12 @@
                     <div class="calendar-header">
                         <span id="calendar-month-label">April 2025</span>
                         <div class="calendar-arrows">
-                            <button class="calendar-nav" id="prev-month" type="button">&lt;</button>
-                            <button class="calendar-nav" id="next-month" type="button">&gt;</button>
+                            <button class="calendar-nav" id="prev-month" type="button" aria-label="Previous month">
+                                <img src="/static/icons/previous.svg" alt="Previous" width="40" height="40" style="vertical-align: middle;" />
+                            </button>
+                            <button class="calendar-nav" id="next-month" type="button" aria-label="Next month">
+                                <img src="/static/icons/next.svg" alt="Next" width="40" height="40" style="vertical-align: middle;" />
+                            </button>
                         </div>
                     </div>
                     <table class="calendar-table">
