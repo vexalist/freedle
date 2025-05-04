@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freedle - Poll Results</title>
+    <link rel="stylesheet" href="app/static/styleguide.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="results-title">Loading...</h1>
+        <div style="margin: 40px 0 24px 0;">
+            <div style="font-size: 1.2rem; margin-bottom: 12px;">Share it with your mates</div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <input id="results-url" class="input-box" type="text" readonly style="flex: 1; user-select: all; font-size: 1.2rem; background: #222; border: none; color: #fff;">
+                <button id="copy-results-url-btn" type="button" style="background: #6cff9a; color: #222; font-weight: bold; border-radius: 12px; border: none; padding: 12px 24px; font-size: 1.2rem; cursor: pointer;">copy</button>
+            </div>
+        </div>
+        <div id="results-grid" style="overflow-x: auto;"></div>
+        <div class="logo">freedle</div>
+    </div>
+    <script src="freedle.js"></script>
+</body>
+</html> 
