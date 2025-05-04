@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freedle - Respond to Poll</title>
+    <link rel="stylesheet" href="app/static/styleguide.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="poll-title">Loading...</h1>
+        <p style="font-size: 1.5rem; margin-bottom: 32px;">When could you be available?</p>
+        <form id="response-form">
+            <label for="name">Your name</label>
+            <input id="name" name="name" class="input-box" type="text" maxlength="40" placeholder="Enter your name" required>
+            <div id="date-options" style="margin-top: 32px;"></div>
+            <button class="done-btn" type="submit" style="margin-top: 32px;">Save</button>
+        </form>
+        <div id="response-message" style="color: #ff6b6b; margin-top: 16px;"></div>
+        <div id="results-link-section" style="display:none; margin-top:32px;">
+            <div style="font-size: 1.2rem; margin-bottom: 12px;">See the results</div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <input id="results-link" class="input-box" type="text" readonly style="flex: 1; user-select: all; font-size: 1.2rem; background: #222; border: none; color: #fff;">
+                <button id="copy-results-btn" type="button" style="background: #6cff9a; color: #222; font-weight: bold; border-radius: 12px; border: none; padding: 12px 24px; font-size: 1.2rem; cursor: pointer;">copy</button>
+            </div>
+        </div>
+        <div class="logo">freedle</div>
+    </div>
+    <script src="freedle.js"></script>
+</body>
+</html> 
