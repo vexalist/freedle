@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ poll.event_title }} Results | Freedle</title>
+    <link rel="stylesheet" href="/static/styleguide.css">
+</head>
+<body>
+    <div class="container">
+        <h1 style="font-size: 3rem; font-family: var(--page-title-font-family); font-weight: var(--page-title-font-weight);">{{ poll.event_title }}</h1>
+        <div style="margin: 40px 0 24px 0;">
+            <div style="font-size: 1.2rem; margin-bottom: 12px;">Share it with your mates</div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <input id="poll-url" class="input-box" type="text" value="{{ poll_url }}" readonly style="flex: 1; user-select: all; font-size: 1.2rem; background: #222; border: none; color: #fff;">
+                <button id="copy-btn" type="button" style="background: #6cff9a; color: #222; font-weight: bold; border-radius: 12px; border: none; padding: 12px 24px; font-size: 1.2rem; cursor: pointer;">copy</button>
+            </div>
+        </div>
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: separate; border-spacing: 0 8px; margin-bottom: 32px;">
+                <thead>
+                    <tr>
+                        <th style="text-align: left; font-size: 1.1rem; font-weight: 700; color: #fff;"> </th>
+                        {% for participant in participants %}
+                        <th style="padding: 0 8px; height: 60px; vertical-align: bottom;">
+                            <div style="writing-mode: vertical-rl; transform: rotate(180deg); font-size: 1.1rem; font-weight: 700; color: #fff; letter-spacing: 1px;">{{ participant }}</div>
+                        </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for date_idx in range(date_options|length) %}
+                    <tr>
+                        <td style="font-size: 1.1rem; font-weight: 600; color: #ffd97b; padding-right: 12px;">{{ date_labels[date_idx] }}</td>
+                        {% for part_idx in range(participants|length) %}
+                        <td style="text-align: center;">
+                            {% if grid[date_idx][part_idx] %}
+                                <span style="color: #ffd97b; font-size: 2rem;">&#10003;</span>
+                            {% else %}
+                                <span style="color: #8d8d8d; font-size: 2rem;">&#10007;</span>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="logo">freedle</div>
+    </div>
+    <script>
+        document.getElementById('copy-btn').onclick = function() {
+            const input = document.getElementById('poll-url');
+            input.select();
+            input.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            this.textContent = 'copied!';
+            setTimeout(() => { this.textContent = 'copy'; }, 1200);
+        };
+    </script>
+</body>
+</html> 

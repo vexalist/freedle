@@ -217,4 +217,23 @@ label {
     flex-direction: row;
     gap: 8px;
     align-items: center;
+}
+.date-option-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+.date-option-row input[type="checkbox"] {
+    width: 28px;
+    height: 28px;
+    accent-color: var(--variable-collection-secondary500);
+    margin: 0;
+    flex-shrink: 0;
+}
+.date-option-row label {
+    font-size: 1.5rem;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
 } 
