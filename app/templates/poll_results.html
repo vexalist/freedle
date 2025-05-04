@@ -39,7 +39,8 @@
             <table style="width: 100%; border-collapse: separate; border-spacing: 0 8px; margin-bottom: 32px;">
                 <thead>
                     <tr>
-                        <th style="text-align: left; font-size: 1.1rem; font-weight: 700; color: #fff;"> </th>
+                        <th style="text-align: left; font-size: 1.1rem; font-weight: 700; color: #fff;"></th>
+                        <th style="text-align: left; font-size: 1.1rem; font-weight: 700; color: #fff;"></th>
                         {% for participant in participants %}
                         <th class="participant-header"></th>
                         {% endfor %}
@@ -49,6 +50,7 @@
                     {% for date_idx in range(date_options|length) %}
                     <tr>
                         <td style="font-size: 1.1rem; font-weight: 600; color: #ffd97b; padding-right: 12px;">{{ date_labels[date_idx] }}</td>
+                        <td style="font-size: 1.1rem; font-weight: 600; color: {% if tallies[date_idx] == participants|length and participants|length > 0 %}#6cff9a{% else %}#fff{% endif %}; padding-right: 12px;">{{ tallies[date_idx] }}/{{ participants|length }}</td>
                         {% for part_idx in range(participants|length) %}
                         <td class="participant-cell">
                             {% if grid[date_idx][part_idx] %}

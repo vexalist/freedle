@@ -83,12 +83,17 @@ def poll_results(slug):
     participants = [r.name for r in poll.responses]
     date_labels = [format_date_option(d.date_option) for d in date_options]
     grid = []
+    tallies = []
     for d in date_options:
         row = []
+        count = 0
         for r in poll.responses:
             selected = any(sel.poll_date_id == d.id for sel in r.selections)
             row.append(selected)
+            if selected:
+                count += 1
         grid.append(row)
+        tallies.append(count)
     poll_url = url_for('poll_response', slug=slug, _external=True)
     return render_template(
         'poll_results.html',
@@ -98,5 +103,6 @@ def poll_results(slug):
         participants=participants,
         grid=grid,
         poll_url=poll_url,
-        format_date_option=format_date_option
+        format_date_option=format_date_option,
+        tallies=tallies
     ) 
