@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ poll.event_title }} Results | Freedle</title>
     <link rel="stylesheet" href="/static/styleguide.css">
+    <style>
+        :root {
+            --participant-col-width: 60px;
+        }
+        .participant-header {
+            width: var(--participant-col-width);
+            min-width: var(--participant-col-width);
+            max-width: var(--participant-col-width);
+            padding: 0 8px;
+            height: 60px;
+            vertical-align: bottom;
+        }
+        .participant-cell {
+            width: var(--participant-col-width);
+            min-width: var(--participant-col-width);
+            max-width: var(--participant-col-width);
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -22,7 +41,7 @@
                     <tr>
                         <th style="text-align: left; font-size: 1.1rem; font-weight: 700; color: #fff;"> </th>
                         {% for participant in participants %}
-                        <th style="padding: 0 8px; height: 60px; vertical-align: bottom;">
+                        <th class="participant-header">
                             <div style="writing-mode: vertical-rl; transform: rotate(180deg); font-size: 1.1rem; font-weight: 700; color: #fff; letter-spacing: 1px;">{{ participant }}</div>
                         </th>
                         {% endfor %}
@@ -33,7 +52,7 @@
                     <tr>
                         <td style="font-size: 1.1rem; font-weight: 600; color: #ffd97b; padding-right: 12px;">{{ date_labels[date_idx] }}</td>
                         {% for part_idx in range(participants|length) %}
-                        <td style="text-align: center;">
+                        <td class="participant-cell">
                             {% if grid[date_idx][part_idx] %}
                                 <span style="color: #ffd97b; font-size: 2rem;">&#10003;</span>
                             {% else %}

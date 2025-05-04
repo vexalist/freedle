@@ -89,7 +89,7 @@ def poll_results(slug):
             selected = any(sel.poll_date_id == d.id for sel in r.selections)
             row.append(selected)
         grid.append(row)
-    poll_url = request.url
+    poll_url = url_for('poll_response', slug=slug, _external=True)
     return render_template(
         'poll_results.html',
         poll=poll,
