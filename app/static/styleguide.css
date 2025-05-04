@@ -77,6 +77,8 @@ label {
     border: none;
     width: 100%;
     margin-bottom: 32px;
+    height: 64px;
+    box-sizing: border-box;
 }
 .calendar-section {
     margin-top: 32px;
@@ -154,6 +156,7 @@ label {
     transition: background 0.15s, color 0.15s;
     overflow: hidden;
     background: none;
+    height: 44px;
 }
 .calendar-table .selected {
     background: var(--variable-collection-secondary500);
@@ -188,9 +191,10 @@ label {
     font-family: var(--page-title-font-family);
     font-weight: var(--page-title-font-weight);
     font-size: 2.5rem;
-    color: var(--variable-collection-terciary500);
+    color: var(--variable-collection-terciary500) !important;
     margin-top: 32px;
     letter-spacing: 1px;
+    display: block;
 }
 @media (max-width: 600px) {
     .container {
@@ -236,4 +240,16 @@ label {
     line-height: 1;
     margin: 0;
     padding: 0;
+}
+/* Share link copy button styling for alignment */
+.copy-btn {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0 32px;
+    box-sizing: border-box;
 } 

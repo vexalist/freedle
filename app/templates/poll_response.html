@@ -29,11 +29,11 @@
         <div style="margin: 40px 0 24px 0;">
             <div style="font-size: 1.2rem; margin-bottom: 12px;">Share it with your mates</div>
             <div style="display: flex; align-items: center; gap: 12px;">
-                <input id="poll-url" class="input-box" type="text" value="{{ poll_url }}" readonly style="flex: 1; user-select: all; font-size: 1.2rem; background: #222; border: none; color: #fff;">
-                <button id="copy-btn" type="button" style="background: #6cff9a; color: #222; font-weight: bold; border-radius: 12px; border: none; padding: 12px 24px; font-size: 1.2rem; cursor: pointer;">copy</button>
+                <input id="poll-url" class="input-box" type="text" value="{{ poll_url }}" readonly style="flex: 1; user-select: all; font-size: 1.2rem; background: var(--variable-collection-primary90); border: none; color: #fff;">
+                <button id="copy-btn" type="button" class="copy-btn" style="background: #6cff9a; color: #222; border: none; cursor: pointer;">copy</button>
             </div>
         </div>
-        <div class="logo">freedle</div>
+        <a href="/create" class="logo" style="text-decoration: none; color: inherit;">freedle</a>
     </div>
     <script>
         document.getElementById('copy-btn').onclick = function() {
