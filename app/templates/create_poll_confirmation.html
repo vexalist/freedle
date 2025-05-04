@@ -9,9 +9,9 @@
 <body>
     <div class="container">
         <h1>Poll Created!</h1>
-        <p><strong>Event:</strong> {{ event_title }}</p>
-        <p><strong>Selected Dates:</strong></p>
-        <ul>
+        <p style="font-family: var(--medium-font-family); font-size: var(--medium-font-size);"><strong>Event:</strong> {{ event_title }}</p>
+        <p style="font-family: var(--medium-font-family); font-size: var(--medium-font-size);"><strong>Selected Dates:</strong></p>
+        <ul style="font-family: var(--medium-font-family); font-size: var(--medium-font-size);">
             {% for date in selected_dates %}
                 <li>{{ date }}</li>
             {% endfor %}

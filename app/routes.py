@@ -66,6 +66,17 @@ def poll_response(slug):
             db.session.commit()
             return redirect(url_for('poll_results', slug=slug))
 
+    # --- New: Prepare data for response grid ---
+    participants = [r.name for r in poll.responses]
+    date_labels = [format_date_option(d.date_option) for d in date_options]
+    grid = []
+    for d in date_options:
+        row = []
+        for r in poll.responses:
+            selected = any(sel.poll_date_id == d.id for sel in r.selections)
+            row.append(selected)
+        grid.append(row)
+
     poll_url = request.url
     return render_template(
         'poll_response.html',
@@ -73,7 +84,10 @@ def poll_response(slug):
         date_options=date_options,
         error=error,
         poll_url=poll_url,
-        format_date_option=format_date_option
+        format_date_option=format_date_option,
+        participants=participants,
+        date_labels=date_labels,
+        grid=grid
     )
 
 @app.route('/poll/<slug>/results')

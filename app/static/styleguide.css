@@ -31,6 +31,7 @@
   --variable-collection-terciary500: rgba(255, 218, 123, 1);
   --variable-collection-primary500: rgba(141, 141, 141, 1);
   --participant-col-width: 60px;
+  --results-td-width: 170px;
 }
 body {
     background: var(--variable-collection-primary100);
@@ -298,11 +299,16 @@ label {
   color: #fff;
 }
 .results-td {
-  width: 140px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #ffd97b;
-  padding-right: 12px;
+    width: auto;
+    padding-right: 12px;
+    color: #ffd97b;
+    font-family: var(--large-font-family);
+    font-weight: var(--large-font-weight);
+    font-size: var(--large-font-size);
+    letter-spacing: var(--large-letter-spacing);
+    line-height: var(--large-line-height);
+    font-style: var(--large-font-style);
+    white-space: nowrap;
 }
 .results-tally {
   width: 70px;
@@ -371,12 +377,9 @@ label {
 }
 .participant-header {
   width: 70px;
-  vertical-align: top;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
+  font-weight: 700;
+  color: #fff;
 }
 .participant-cell {
   width: 70px;
@@ -395,4 +398,52 @@ label {
 
 .results-table-container {
     overflow-x: auto;
+    width: 100vw;
+    max-width: none;
+    margin-left: 0;
+    transform: none;
+}
+.results-table {
+    width: auto;
+    min-width: max-content;
+    max-width: none;
+}
+
+/* Custom checkbox style for poll response table */
+.results-td input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--variable-collection-secondary500);
+  border-radius: 8px;
+  background: transparent;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.2s, border-color 0.2s;
+  vertical-align: middle;
+}
+
+.results-td input[type="checkbox"]:checked {
+  background: var(--variable-collection-secondary500);
+  border-color: var(--variable-collection-secondary500);
+}
+
+.results-td input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 8px;
+  height: 14px;
+  border: solid #222;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  display: block;
+}
+
+.empty-alignment-cell {
+    width: var(--results-td-width);
 } 
