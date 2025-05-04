@@ -30,6 +30,7 @@
   --variable-collection-secondary500: rgba(108, 255, 154, 1);
   --variable-collection-terciary500: rgba(255, 218, 123, 1);
   --variable-collection-primary500: rgba(141, 141, 141, 1);
+  --participant-col-width: 60px;
 }
 body {
     background: var(--variable-collection-primary100);
@@ -365,4 +366,34 @@ label {
 }
 .home-btn:hover {
   background: #4be87a;
+}
+.participant-header {
+  width: var(--participant-col-width);
+  min-width: var(--participant-col-width);
+  max-width: var(--participant-col-width);
+  padding: 0 8px;
+  vertical-align: top;
+}
+.participant-cell {
+  width: var(--participant-col-width);
+  min-width: var(--participant-col-width);
+  max-width: var(--participant-col-width);
+  text-align: center;
+}
+.results-participant-row {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  align-items: flex-end;
+  min-height: 60px;
+}
+.calendar-table td.disabled {
+    color: var(--variable-collection-primary500);
+    background: none !important;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.results-table-container {
+    overflow-x: auto;
 } 

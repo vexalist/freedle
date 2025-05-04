@@ -5,24 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ poll.event_title }} Results | Freedle</title>
     <link rel="stylesheet" href="/static/styleguide.css">
-    <style>
-        :root {
-            --participant-col-width: 60px;
-        }
-        .participant-header {
-            width: var(--participant-col-width);
-            min-width: var(--participant-col-width);
-            max-width: var(--participant-col-width);
-            padding: 0 8px;
-            vertical-align: top;
-        }
-        .participant-cell {
-            width: var(--participant-col-width);
-            min-width: var(--participant-col-width);
-            max-width: var(--participant-col-width);
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -34,7 +16,7 @@
                 <button id="copy-btn" type="button" class="copy-btn">copy</button>
             </div>
         </div>
-        <div style="overflow-x: auto;">
+        <div class="results-table-container">
             <table class="results-table">
                 <thead>
                     <tr>
@@ -64,7 +46,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="margin-bottom-32" style="display: flex; gap: 12px; justify-content: flex-end; align-items: flex-end; min-height: 60px;">
+        <div class="margin-bottom-32 results-participant-row">
             {% for participant in participants %}
             <div class="participant-header">
                 <div class="participant-name-vertical">{{ participant }}</div>
