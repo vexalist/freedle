@@ -125,6 +125,10 @@ body {
   padding: 0;
 }
 
+.form__label--container {
+  margin-top: 0;
+}
+
 .form__input {
   background: var(--color-surface);
   border-radius: var(--radius-md);
@@ -221,6 +225,12 @@ body {
 .calendar__nav:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.calendar__nav-group {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-xs);
 }
 
 .calendar__table {
@@ -369,4 +379,10 @@ body {
   .heading--home {
     font-size: 1.5rem;
   }
+}
+
+.date-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
 } 
