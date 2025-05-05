@@ -63,23 +63,30 @@
             <button class="btn btn--primary btn--full u-mt-lg" type="submit">Save</button>
         </form>
         <div class="share u-mt-lg">
-            <div class="text text--large u-mb-sm">Share it with your mates</div>
-            <div class="share__row">
-                <input id="poll-url" class="form__input form__input--readonly" type="text" value="{{ poll_url }}" readonly>
-                <button id="copy-btn" type="button" class="btn btn--primary">copy</button>
-            </div>
+            <span id="share-link" class="text text--xs share--discreet" style="cursor:pointer;">Share this</span>
+            <span id="share-feedback" class="text text--xs" style="display:none;"><span style="color: #6cff9a; font-size: 1.2em; vertical-align: middle;">&#10003;</span> The URL has been copied to your clipboard</span>
         </div>
         <a href="/" class="heading heading--home">freedle</a>
     </div>
     <script>
-        document.getElementById('copy-btn').onclick = function() {
-            const input = document.getElementById('poll-url');
-            input.select();
-            input.setSelectionRange(0, 99999);
-            document.execCommand('copy');
-            this.textContent = 'copied!';
-            setTimeout(() => { this.textContent = 'copy'; }, 1200);
-        };
+    document.addEventListener('DOMContentLoaded', function() {
+        // Share link logic
+        const shareLink = document.getElementById('share-link');
+        const shareFeedback = document.getElementById('share-feedback');
+        console.log('Script loaded');
+        console.log('shareLink:', shareLink, 'shareFeedback:', shareFeedback);
+        if (shareLink && shareFeedback) {
+            shareLink.onclick = function() {
+                navigator.clipboard.writeText("{{ poll_url }}");
+                shareLink.style.display = 'none';
+                shareFeedback.style.display = 'inline';
+                setTimeout(() => {
+                    shareFeedback.style.display = 'none';
+                    shareLink.style.display = 'inline';
+                }, 5000);
+            };
+        }
+    });
     </script>
 </body>
 </html> 
