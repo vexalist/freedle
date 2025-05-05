@@ -10,12 +10,12 @@
 
 :root {
   /* Typography */
-  --font-primary: "DM Sans", Helvetica;
-  --font-display: "Bricolage Grotesque", Helvetica;
+  --font-primary: "DM Sans", Arial, sans-serif;
+  --font-display: "Bricolage Grotesque", Arial, sans-serif;
   
   /* Font Sizes */
-  --text-xs: 14px;
-  --text-sm: 16px;
+  --text-xs: 16px;
+  --text-sm: 18px;
   --text-base: 20px;
   --text-lg: 24px;
   --text-xl: 44px;
@@ -42,6 +42,7 @@
   --space-lg: 32px;
   --space-xl: 40px;
   
+  
   /* Layout */
   --container-width: 480px;
   --participant-col-width: 60px;
@@ -51,15 +52,23 @@
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-full: 50%;
+  
+  /* Results Table Column Widths */
+  --results-date-col-width: 200px;
+  --results-tally-col-width: 44px;
+  --results-participant-col-width: 80px;
 }
 
 /* ==========================================================================
    Base Styles
    ========================================================================== */
+html, body {
+  font-family: var(--font-primary), Arial, sans-serif;
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-primary);
   font-size: var(--text-sm);
   font-weight: var(--weight-light);
   margin: 0;
@@ -80,7 +89,7 @@ body {
    Typography
    ========================================================================== */
 .heading {
-  font-family: var(--font-display);
+  font-family: var(--font-display), Arial, sans-serif;
   font-weight: var(--weight-black);
   font-size: var(--text-xl);
   margin-bottom: var(--space-lg);
@@ -96,7 +105,7 @@ body {
 }
 
 .text {
-  font-family: var(--font-primary);
+  font-family: var(--font-primary), Arial, sans-serif;
   font-size: var(--text-sm);
   font-weight: var(--weight-light);
 }
@@ -110,9 +119,22 @@ body {
   font-weight: var(--weight-bold);
 }
 
+.text--medium {
+  font-family: var(--font-primary), Arial, sans-serif;
+  font-size: var(--text-base) !important;
+  font-weight: var(--weight-bold) !important;
+}
+
 /* ==========================================================================
    Form Elements
    ========================================================================== */
+.form__label,
+.form__input,
+.btn,
+.date-option label {
+  font-family: var(--font-primary), Arial, sans-serif;
+}
+
 .form__label {
   display: block;
   font-size: var(--text-base);
@@ -288,6 +310,12 @@ body {
   table-layout: fixed;
 }
 
+.results__header,
+.results__cell,
+.results__tally {
+  font-family: var(--font-primary), Arial, sans-serif;
+}
+
 .results__header {
   font-weight: var(--weight-bold);
   text-align: left;
@@ -306,6 +334,20 @@ body {
 
 .results__tally--full {
   color: var(--color-primary);
+}
+
+/* Results Table Column Widths */
+.results__table th.results__header:first-child,
+.results__table td.results__cell:first-child {
+  width: var(--results-date-col-width);
+}
+.results__table th.results__header:nth-child(2),
+.results__table td.results__tally {
+  width: var(--results-tally-col-width);
+}
+.results__table th.results__header:not(:first-child):not(:nth-child(2)),
+.results__table td.results__cell:not(:first-child):not(.results__tally) {
+  width: var(--results-participant-col-width);
 }
 
 /* ==========================================================================
