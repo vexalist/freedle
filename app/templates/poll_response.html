@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ poll.event_title }} | Freedle</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
     <div class="container">
@@ -13,7 +13,7 @@
         {% if error %}
             <div class="text text--large">{{ error }}</div>
         {% endif %}
-        <form method="POST">
+        <form method="POST" class="form">
             <label for="name" class="form__label">Your name</label>
             <input id="name" name="name" class="form__input" type="text" maxlength="40" placeholder="Enter your name" required>
             

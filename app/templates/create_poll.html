@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a date | Freedle</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
     <div class="container">
         <h1 class="heading">Find a date</h1>
-        <form id="create-form" method="POST" action="/create">
+        <form id="create-form" method="POST" action="/create" class="form">
             <label for="event-title" class="form__label">What's the event?</label>
             <input id="event-title" name="event_title" class="form__input" type="text" maxlength="80" placeholder="Enter event name" required>
             <input type="hidden" id="selected-dates" name="selected_dates" value="">
@@ -18,7 +18,7 @@
                 <span class="form__label">Pick up to 10 dates as options</span>
                 <div class="calendar__container">
                     <div class="calendar__header">
-                        <span id="calendar-month-label">April 2025</span>
+                        <span id="calendar-month-label" class="calendar__month">April 2025</span>
                         <div class="calendar__nav-group">
                             <button class="calendar__nav" id="prev-month" type="button" aria-label="Previous month">
                                 <img src="/static/icons/previous.svg" alt="Previous" width="40" height="40" class="icon-middle" />
@@ -38,7 +38,7 @@
                             <!-- Calendar days will be rendered here by JS -->
                         </tbody>
                     </table>
-                    <div id="calendar-message" class="text"></div>
+                    <div id="calendar-message" class="calendar__message"></div>
                 </div>
             </div>
             <button class="btn btn--primary btn--full" id="done-btn" type="submit" disabled>Done</button>
