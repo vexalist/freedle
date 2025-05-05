@@ -1,0 +1,364 @@
+/* 
+ * Freedle - Main Stylesheet
+ * Organized by component and following BEM naming convention
+ */
+
+/* ==========================================================================
+   Variables & Base Styles
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+:root {
+  /* Typography */
+  --font-primary: "DM Sans", Helvetica;
+  --font-display: "Bricolage Grotesque", Helvetica;
+  
+  /* Font Sizes */
+  --text-xs: 14px;
+  --text-sm: 16px;
+  --text-base: 20px;
+  --text-lg: 24px;
+  --text-xl: 44px;
+  
+  /* Font Weights */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-bold: 700;
+  --weight-black: 800;
+  
+  /* Colors */
+  --color-bg: rgba(34, 34, 34, 1);
+  --color-surface: rgba(50, 50, 50, 1);
+  --color-primary: rgba(108, 255, 154, 1);
+  --color-primary-hover: #4be87a;
+  --color-accent: rgba(255, 218, 123, 1);
+  --color-text: #fff;
+  --color-text-muted: rgba(141, 141, 141, 1);
+  
+  /* Spacing */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 40px;
+  
+  /* Layout */
+  --container-width: 480px;
+  --participant-col-width: 60px;
+  --results-col-width: 170px;
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-full: 50%;
+}
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-light);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Layout Components
+   ========================================================================== */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-sm) 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+.heading {
+  font-family: var(--font-display);
+  font-weight: var(--weight-black);
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-lg);
+}
+
+.heading--home {
+  text-align: center;
+  color: var(--color-accent);
+  margin-top: var(--space-xl);
+  letter-spacing: 1px;
+}
+
+.text {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-light);
+}
+
+.text--large {
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+}
+
+.text--bold {
+  font-weight: var(--weight-bold);
+}
+
+/* ==========================================================================
+   Form Elements
+   ========================================================================== */
+.form__label {
+  display: block;
+  font-size: var(--text-base);
+  margin-bottom: var(--space-xs);
+  margin-top: var(--space-lg);
+}
+
+.form__label--inline {
+  margin: 0;
+  padding: 0;
+}
+
+.form__input {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+  border: none;
+  width: 100%;
+  margin-bottom: var(--space-lg);
+  height: 64px;
+  box-sizing: border-box;
+}
+
+.form__input--readonly {
+  background: var(--color-surface);
+  cursor: default;
+}
+
+.form__checkbox {
+  width: 28px;
+  height: 28px;
+  accent-color: var(--color-primary);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: none;
+  text-decoration: none;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn--full {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Calendar Component
+   ========================================================================== */
+.calendar {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-sm) var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-sm);
+}
+
+.calendar__nav {
+  background: var(--color-bg);
+  border-radius: var(--radius-full);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  color: var(--color-text);
+  margin-left: var(--space-xs);
+}
+
+.calendar__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: var(--space-xs);
+  text-align: center;
+  table-layout: fixed;
+}
+
+.calendar__cell {
+  aspect-ratio: 1/1;
+  min-width: 32px;
+  max-width: 48px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background 0.15s, color 0.15s;
+  overflow: hidden;
+  background: none;
+  height: 44px;
+}
+
+.calendar__cell--selected {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  font-weight: var(--weight-bold);
+}
+
+.calendar__cell--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Results Table
+   ========================================================================== */
+.results {
+  margin-top: var(--space-lg);
+}
+
+.results__container {
+  overflow-x: auto;
+  margin: 0 -16px;
+  padding: 0 16px;
+}
+
+.results__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: var(--space-xs);
+  table-layout: fixed;
+}
+
+.results__header {
+  font-weight: var(--weight-bold);
+  text-align: left;
+  padding-bottom: var(--space-xs);
+  white-space: nowrap;
+}
+
+.results__cell {
+  padding: var(--space-xs);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.results__tally {
+  font-weight: var(--weight-bold);
+  margin-top: var(--space-xs);
+}
+
+.results__tally--full {
+  color: var(--color-primary);
+}
+
+.date-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* ==========================================================================
+   Share Component
+   ========================================================================== */
+.share {
+  margin-top: var(--space-lg);
+}
+
+.share__row {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.share__row .form__input {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+.u-text-center {
+  text-align: center;
+}
+
+.u-mt-lg {
+  margin-top: var(--space-lg);
+}
+
+.u-mb-lg {
+  margin-bottom: var(--space-lg);
+}
+
+.u-mb-sm {
+  margin-bottom: var(--space-sm);
+}
+
+.icon-middle {
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+@media (max-width: 600px) {
+  .container {
+    padding: var(--space-md) 4px 0;
+  }
+  
+  .heading {
+    font-size: 2.2rem;
+  }
+  
+  .form__input {
+    font-size: 1.3rem;
+  }
+  
+  .calendar__header {
+    font-size: 1.2rem;
+  }
+  
+  .btn {
+    font-size: 1.3rem;
+  }
+  
+  .heading--home {
+    font-size: 1.5rem;
+  }
+} 

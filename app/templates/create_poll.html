@@ -4,38 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a date | Freedle</title>
-    <link rel="stylesheet" href="/static/styleguide.css">
-    <style>
-        .calendar-table td.disabled {
-            color: var(--variable-collection-primary500);
-            background: none !important;
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Find a date</h1>
+        <h1 class="heading">Find a date</h1>
         <form id="create-form" method="POST" action="/create">
-            <label for="event-title">What's the event?</label>
-            <input id="event-title" name="event_title" class="input-box" type="text" maxlength="80" placeholder="Enter event name" required>
+            <label for="event-title" class="form__label">What's the event?</label>
+            <input id="event-title" name="event_title" class="form__input" type="text" maxlength="80" placeholder="Enter event name" required>
             <input type="hidden" id="selected-dates" name="selected_dates" value="">
-            <div class="calendar-section">
-                <span class="calendar-label">Pick up to 10 dates as options</span>
-                <div class="calendar">
-                    <div class="calendar-header">
+            
+            <div class="calendar">
+                <span class="form__label">Pick up to 10 dates as options</span>
+                <div class="calendar__container">
+                    <div class="calendar__header">
                         <span id="calendar-month-label">April 2025</span>
-                        <div class="calendar-arrows">
-                            <button class="calendar-nav" id="prev-month" type="button" aria-label="Previous month">
+                        <div class="calendar__nav-group">
+                            <button class="calendar__nav" id="prev-month" type="button" aria-label="Previous month">
                                 <img src="/static/icons/previous.svg" alt="Previous" width="40" height="40" class="icon-middle" />
                             </button>
-                            <button class="calendar-nav" id="next-month" type="button" aria-label="Next month">
+                            <button class="calendar__nav" id="next-month" type="button" aria-label="Next month">
                                 <img src="/static/icons/next.svg" alt="Next" width="40" height="40" class="icon-middle" />
                             </button>
                         </div>
                     </div>
-                    <table class="calendar-table">
+                    <table class="calendar__table">
                         <thead>
                             <tr>
                                 <th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th><th>Su</th>
@@ -45,12 +38,12 @@
                             <!-- Calendar days will be rendered here by JS -->
                         </tbody>
                     </table>
-                    <div id="calendar-message"></div>
+                    <div id="calendar-message" class="text"></div>
                 </div>
             </div>
-            <button class="done-btn" id="done-btn" type="submit" disabled>Done</button>
+            <button class="btn btn--primary btn--full" id="done-btn" type="submit" disabled>Done</button>
         </form>
-        <a href="/create" class="logo logo-link">freedle</a>
+        <a href="/" class="heading heading--home">freedle</a>
     </div>
     <script>
         // --- Calendar Logic ---
@@ -119,14 +112,14 @@
                         const dateObj = new Date(year, month, day);
                         dateObj.setHours(0,0,0,0);
                         const dateStr = `${year}-${pad(month + 1)}-${pad(day)}`;
-                        let cellClass = '';
+                        let cellClass = 'calendar__cell';
                         let disabled = false;
                         if (dateObj < today) {
-                            cellClass = 'disabled';
+                            cellClass += ' calendar__cell--disabled';
                             disabled = true;
                         }
-                        if (selectedDates.has(dateStr)) cellClass += ' selected';
-                        html += `<td data-date="${dateStr}" class="${cellClass.trim()}"${disabled ? ' tabindex="-1"' : ''}>${day}</td>`;
+                        if (selectedDates.has(dateStr)) cellClass += ' calendar__cell--selected';
+                        html += `<td data-date="${dateStr}" class="${cellClass}"${disabled ? ' tabindex="-1"' : ''}>${day}</td>`;
                         day++;
                     }
                 }
@@ -136,12 +129,12 @@
             calendarBody.innerHTML = html;
 
             // Add click listeners
-            document.querySelectorAll('.calendar-table td[data-date]').forEach(cell => {
-                if (cell.classList.contains('disabled')) return;
+            document.querySelectorAll('.calendar__table td[data-date]').forEach(cell => {
+                if (cell.classList.contains('calendar__cell--disabled')) return;
                 cell.addEventListener('click', function() {
                     const date = this.getAttribute('data-date');
-                    if (this.classList.contains('selected')) {
-                        this.classList.remove('selected');
+                    if (this.classList.contains('calendar__cell--selected')) {
+                        this.classList.remove('calendar__cell--selected');
                         selectedDates.delete(date);
                         messageDiv.textContent = '';
                     } else {
@@ -149,7 +142,7 @@
                             messageDiv.textContent = `You can select up to ${maxSelections} dates.`;
                             return;
                         }
-                        this.classList.add('selected');
+                        this.classList.add('calendar__cell--selected');
                         selectedDates.add(date);
                         messageDiv.textContent = '';
                     }

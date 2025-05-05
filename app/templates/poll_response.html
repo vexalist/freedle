@@ -4,46 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ poll.event_title }} | Freedle</title>
-    <link rel="stylesheet" href="/static/styleguide.css">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="page-title">{{ poll.event_title }}</h1>
-        <p class="margin-bottom-32" style="font-family: var(--medium-font-family); font-size: var(--medium-font-size);">When could you be available?</p>
+        <h1 class="heading">{{ poll.event_title }}</h1>
+        <p class="text text--large u-mb-lg">When could you be available?</p>
         {% if error %}
-            <div class="error-message">{{ error }}</div>
+            <div class="text text--large">{{ error }}</div>
         {% endif %}
         <form method="POST">
-            <label for="name">Your name</label>
-            <input id="name" name="name" class="input-box" type="text" maxlength="40" placeholder="Enter your name" required>
-            <div class="margin-top-32">
-                <div class="results-table-container">
-                    <table class="results-table">
+            <label for="name" class="form__label">Your name</label>
+            <input id="name" name="name" class="form__input" type="text" maxlength="40" placeholder="Enter your name" required>
+            
+            <div class="results u-mt-lg">
+                <div class="results__container">
+                    <table class="results__table">
                         <thead>
                             <tr>
-                                <th class="results-th">Date</th>
+                                <th class="results__header">Date</th>
                                 {% if participants|length > 0 %}
-                                <th class="results-th">Tally</th>
+                                <th class="results__header">Tally</th>
                                 {% endif %}
                                 {% for participant in participants %}
-                                <th class="participant-header">{{ participant }}</th>
+                                <th class="results__header">{{ participant }}</th>
                                 {% endfor %}
                             </tr>
                         </thead>
                         <tbody>
                             {% for date_idx in range(date_options|length) %}
                             <tr>
-                                <td class="results-td">
-                                    <div style="display: flex; align-items: center; gap: 16px;">
-                                        <input type="checkbox" id="date-{{ loop.index }}" name="dates" value="{{ date_options[date_idx].date_option }}">
-                                        <label for="date-{{ loop.index }}" style="margin: 0; padding: 0;">{{ format_date_option(date_options[date_idx].date_option) }}</label>
+                                <td class="results__cell">
+                                    <div class="date-option">
+                                        <input type="checkbox" id="date-{{ loop.index }}" name="dates" value="{{ date_options[date_idx].date_option }}" class="form__checkbox">
+                                        <label for="date-{{ loop.index }}" class="form__label form__label--inline">{{ format_date_option(date_options[date_idx].date_option) }}</label>
                                     </div>
                                 </td>
                                 {% if participants|length > 0 %}
-                                <td class="results-tally {% if grid[date_idx]|sum == participants|length and participants|length > 0 %}full{% else %}partial{% endif %}">{{ grid[date_idx]|sum }}/{{ participants|length }}</td>
+                                <td class="results__tally {% if grid[date_idx]|sum == participants|length and participants|length > 0 %}results__tally--full{% endif %}">
+                                    {{ grid[date_idx]|sum }}/{{ participants|length }}
+                                </td>
                                 {% endif %}
                                 {% for part_idx in range(participants|length) %}
-                                <td class="participant-cell">
+                                <td class="results__cell">
                                     {% if grid[date_idx][part_idx] %}
                                         <img src="/static/icons/available.svg" alt="Available" width="32" height="32" class="icon-middle" />
                                     {% else %}
@@ -57,16 +60,16 @@
                     </table>
                 </div>
             </div>
-            <button class="done-btn margin-top-32" type="submit">Save</button>
+            <button class="btn btn--primary btn--full u-mt-lg" type="submit">Save</button>
         </form>
-        <div class="margin-40-0-24-0">
-            <div class="margin-bottom-12" style="font-family: var(--medium-font-family); font-size: var(--medium-font-size);">Share it with your mates</div>
-            <div class="share-row">
-                <input id="poll-url" class="input-box poll-url" type="text" value="{{ poll_url }}" readonly>
-                <button id="copy-btn" type="button" class="copy-btn">copy</button>
+        <div class="share u-mt-lg">
+            <div class="text text--large u-mb-sm">Share it with your mates</div>
+            <div class="share__row">
+                <input id="poll-url" class="form__input form__input--readonly" type="text" value="{{ poll_url }}" readonly>
+                <button id="copy-btn" type="button" class="btn btn--primary">copy</button>
             </div>
         </div>
-        <a href="/create" class="logo logo-link">freedle</a>
+        <a href="/" class="heading heading--home">freedle</a>
     </div>
     <script>
         document.getElementById('copy-btn').onclick = function() {
