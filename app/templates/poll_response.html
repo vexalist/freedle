@@ -37,7 +37,7 @@
                                 <td class="results__cell">
                                     <div class="date-option">
                                         <input type="checkbox" id="date-{{ loop.index }}" name="dates" value="{{ date_options[date_idx].date_option }}" class="form__checkbox">
-                                        <label for="date-{{ loop.index }}" class="form__label form__label--inline">{{ format_date_option(date_options[date_idx].date_option) }}</label>
+                                        <label for="date-{{ loop.index }}" class="form__label form__label--inline text--medium">{{ format_date_option(date_options[date_idx].date_option) }}</label>
                                     </div>
                                 </td>
                                 {% if participants|length > 0 %}

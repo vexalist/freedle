@@ -31,7 +31,7 @@
                     <tbody>
                         {% for date_idx in range(date_options|length) %}
                         <tr>
-                            <td class="results__cell">{{ date_labels[date_idx] }}</td>
+                            <td class="results__cell text--medium">{{ date_labels[date_idx] }}</td>
                             <td class="results__tally {% if tallies[date_idx] == participants|length and participants|length > 0 %}results__tally--full{% endif %}">{{ tallies[date_idx] }}/{{ participants|length }}</td>
                             {% for part_idx in range(participants|length) %}
                             <td class="results__cell">
