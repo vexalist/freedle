@@ -1,3 +1,4 @@
+# Test deployment - Automated GitHub to Heroku deployment test
 from app import app
 from init_db import init_db
 import os
